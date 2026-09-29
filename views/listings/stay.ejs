@@ -1,0 +1,104 @@
+<% layout("/layout/boilerplate")%>
+     <div class="row">
+       <div class="col-8 offset-3">
+       </div>
+       <div class="card Card-stay col-6 offset-3 mt-3">
+        <h2><%=stay.title%></h2>
+         <img src="<%= typeof stay.image === 'string' ? stay.image : stay.image?.url %>" class="card-img-top"alt="stay image">
+         <div class="card-body">
+         <p class="card-text" >Owned by <i><%=stay.owner.username%></i><br/></p>
+         <p class="card-text"><%=stay.description%><br/></p>
+         <p class="card-text">&#8377; <%= stay.price ? stay.price.toLocaleString("en-IN") : "N/A" %>/night<br/></p>
+         <p class="card-text"><%=stay.location%><br></p>
+         <p class="card-text"><%=stay.country%></p>
+         </div>
+       </div>
+    
+       <div class="col-6 offset-3">
+          <div class="row btns">
+          <form class="col-3" method="GET" action="/listings/<%= stay._id %>/edit">
+              <button class="btn btn-dark editbtn w-100">Edit</button>
+          </form>
+
+          <form class="col-3" method="POST" action="/listings/<%= stay._id %>?_method=DELETE">
+            <button
+              class="btn btn-dark w-100"
+              onclick="return confirm('Are you sure you want to delete this stay?')">
+                Delete
+            </button>
+          </form>
+          </div>
+       </div>
+      
+       
+      <div class="col-8 offset-3">
+      <hr/>
+      <form method="Post" action="/listings/<%=stay._id%>/reviews" novalidate class="needs-validation" >
+        <div class="mb-3 mt-3">
+          <% if(CurrUser){%>
+          <h4>Leave Review</h4>
+        </div>
+        <div class="mb-3">
+
+       <label class="form-label"><b>Rating</b></label>
+
+       <div class="star-rating">
+
+        <input type="radio" id="star5" name="review[Rating]" value="5">
+        <label for="star5">&#9733;</label>
+
+        <input type="radio" id="star4" name="review[Rating]" value="4">
+        <label for="star4">&#9733;</label>
+
+        <input type="radio" id="star3" name="review[Rating]" value="3">
+        <label for="star3">&#9733;</label>
+
+        <input type="radio" id="star2" name="review[Rating]" value="2">
+        <label for="star2">&#9733;</label>
+
+        <input type="radio" id="star1" name="review[Rating]" value="1" required>
+        <label for="star1">&#9733;</label>
+
+       </div>
+      </div>
+        <div class="mb-3 mt-3">
+          <label for="comment" class="form-label">Comment:</label>
+          <textarea name="review[Comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+          <div class="invalid-feedback">Please add some comments for the review!</div>
+        </div>
+
+        <div class="mb-3 mt-3">
+          <button class="btn btn-outline-dark">Submit</button>
+        </div>
+      </form>
+      <%}%>
+    
+
+      <h4>All Reviews</h4>
+
+      <div class="row">
+      <%for(let review of stay.reviews){%>
+          <div class="card col-5 mb-3 ms-3" >
+            <div class="card-body">
+                <h5 class="card-title"><%=review.Author.username%></h5>
+                <p class="card-text"><%=review.Comment%></p>
+                <div class="review-stars">
+                <% for(let i = 1; i <= 5; i++) { %>
+                <% if(i <= review.Rating) { %>
+                  <span class="filled">★</span>
+                <% } else { %>
+                  <span>★</span>
+                <% } %>
+              <% } %>
+              </div>
+                <form class="mb-3" method="POST" action="/listings/<%=stay._id%>/reviews/<%=review._id%>?_method=DELETE">
+                  <button class="btn btn-dark" onclick="return confirm('Are you sure you want to delete this review?')">Delete</button>
+                </form>
+            </div>
+          </div>
+          <%}%>
+      </div>
+    </div>
+  </div>
+        
+    

@@ -1,0 +1,49 @@
+.star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #d3d3d3;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+/* Hover Effect */
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
+    transform: scale(1.15);
+}
+
+/* Selected Stars */
+.star-rating input:checked ~ label {
+    color: #ffc107;
+}
+
+/* Click Animation */
+.star-rating label:active {
+    transform: scale(0.9);
+}
+
+/* Focus */
+.star-rating input:focus + label {
+    outline: 2px solid #ffc107;
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width:768px) {
+    .star-rating label {
+        font-size: 1.7rem;
+    }
+}

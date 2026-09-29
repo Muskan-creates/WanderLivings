@@ -1,0 +1,19 @@
+# Environment variables
+.env
+
+# Dependencies
+node_modules/
+
+# Database backups / migration files
+local-backup/
+migrate.js
+restore.js
+
+# Salesforce local configuration
+.sfdx/
+
+# Local storage
+storage/
+
+# Classroom/local files
+Classroom/

@@ -1,0 +1,126 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="row">
+    <div class="col-8 offset-2">
+
+        <h1>Edit Stay Details</h1>
+        <br>
+
+        <form method="POST"
+              action="/listings/<%= editstay._id %>/submit?_method=PUT"
+              class="needs-validation"
+              novalidate
+              enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text"
+                       value="<%= editstay.title %>"
+                       name="listing[title]"
+                       class="form-control"
+                       required>
+
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">
+                    Description:
+                </label>
+
+                <textarea name="listing[description]"
+                          class="form-control"
+                          required><%= editstay.description %></textarea>
+
+                <div class="invalid-feedback">
+                    Please add description.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Original Listing Image
+                </label>
+
+                <br>
+
+                <img src="<%= originalImageUrl %>"
+                     alt="Preview"
+                     class="img-thumbnail preview-img">
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">
+                    Upload New Image:
+                </label>
+
+                <input type="file"
+                       name="listing[image]"
+                       class="form-control"
+                       required>
+            </div>
+
+            <div class="row">
+
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">
+                        Price:
+                    </label>
+
+                    <input type="number"
+                           value="<%= editstay.price %>"
+                           name="listing[price]"
+                           class="form-control"
+                           required>
+
+                    <div class="invalid-feedback">
+                        Please provide a valid price.
+                    </div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="location" class="form-label">
+                        Location:
+                    </label>
+
+                    <input type="text"
+                           value="<%= editstay.location %>"
+                           name="listing[location]"
+                           class="form-control"
+                           required>
+
+                    <div class="invalid-feedback">
+                        Please provide a valid location.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="country" class="form-label">
+                    Country:
+                </label>
+
+                <input type="text"
+                       value="<%= editstay.country %>"
+                       name="listing[country]"
+                       class="form-control"
+                       required>
+
+                <div class="invalid-feedback">
+                    Please provide a valid country.
+                </div>
+            </div>
+
+            <button class="btn btn-dark editbtn mt-3" type="submit">
+                Edit
+            </button>
+
+            <br><br>
+
+        </form>
+
+    </div>
+</div>

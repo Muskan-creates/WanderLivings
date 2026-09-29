@@ -1,0 +1,58 @@
+<% layout("/layout/boilerplate")%>
+<div class="row">
+    <div class="col-8 offset-2">
+    <h1>Add New Stay</h1>
+    <form method="POST" action="/listings/add" class="needs-validation" novalidate enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" placeholder="Add a catchy title" name="listing[title]" class="form-control" required>
+            <div class="valid-feedback">
+              looks good!
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea name="listing[description]" class="form-control" required>add description</textarea>
+            <div class="invalid-feedback">
+                    Please add description.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image:</label>
+            <input type="file" name="listing[image]" class="form-control">
+            required
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" placeholder="1200" name="listing[price]" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please provide a valid price.
+                </div>
+            </div>
+
+            <div class="mb-3 col-md-8">
+                <label for="country" class="form-label">Country:</label>
+                <input type="text" placeholder="India" name="listing[country]" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please provide a valid Country.
+              </div>
+            </div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="location" class="form-label">Location:</label>
+            <input type="text" placeholder="Jaipur, Rajasthan, Himachal" name="listing[location]" class="form-control" required>
+            <div class="invalid-feedback">
+              Please provide a valid location.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark addbtn mt-3">Submit</button>
+        <br/><br/>
+    </form>
+</div>
+</div>
